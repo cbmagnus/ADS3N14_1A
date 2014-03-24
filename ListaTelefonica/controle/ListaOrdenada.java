@@ -9,11 +9,11 @@ public class ListaOrdenada<T extends Comparable<T>>	extends ListaEncadeada<T>
 	{
 		Nodo<T> atual = getHead();
 		Nodo<T> anterior = null;
-		T chaveNeedle = needle.getChave();
+		T nomeNeedle = needle.getNome();
 
 		while (atual != null) {
-			T chaveAtual = atual.getChave();
-			int cmp = chaveNeedle.compareTo(chaveAtual);
+			T nomeAtual = atual.getNome();
+			int cmp = nomeNeedle.compareTo(nomeAtual);
 			if (cmp == 0)
 				return atual; 
 			if (cmp < 0)
@@ -25,7 +25,7 @@ public class ListaOrdenada<T extends Comparable<T>>	extends ListaEncadeada<T>
 	}
 
 	@Override
-	public void append(Nodo<T> novo)
+	public void append(Nodo<T> novo) //adicionar
 	{
 		insert(novo);
 	}
