@@ -1,21 +1,31 @@
 package controle;
 
 public class Nodo<T> {
-	private T chave;
+	private T nome;
+	private T telefone;
 	private Nodo<T> next;
 
 	public Nodo()
 	{
-		chave = null;
+		nome = null;
+		telefone = null;
 		next = null;
 	}
 
-	public T getChave() {
-		return chave;
+	public T getNome() {
+		return nome;
 	}
 
-	public void setChave(T chave) {
-		this.chave = chave;
+	public void setNome(T nome) {
+		this.nome = nome;
+	}
+	
+	public T getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(T telefone) {
+		this.telefone = telefone;
 	}
 
 	public Nodo<T> getNext() {
