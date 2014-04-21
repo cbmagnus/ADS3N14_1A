@@ -1,0 +1,4 @@
+Arrays.fill:
+Vai preencher os valores de um array com determinado valor.
+Caso deseje que todos os elementos de 'array' tenham o valor 'valor':
+Arrays.fill(array, valor);
