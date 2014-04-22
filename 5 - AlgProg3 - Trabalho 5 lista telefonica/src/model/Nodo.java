@@ -5,13 +5,6 @@ public class Nodo {
 	private Contato contato;
 	private Nodo filhoEsquerdo;
 	private Nodo filhoDireito;
-
-	public Nodo(Contato contato, Nodo filhoEsquerdo, Nodo filhoDireito) {
-		this.contato = contato;
-		this.filhoEsquerdo = filhoEsquerdo;
-		this.filhoDireito = filhoDireito;
-	}
-
 	
 	public Contato getContato() {
 		return contato;
@@ -36,7 +29,5 @@ public class Nodo {
 	public void setFilhoDireito(Nodo filhoDireito) {
 		this.filhoDireito = filhoDireito;
 	}
-	
-	
-	
+
 }

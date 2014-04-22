@@ -1,9 +1,10 @@
-package contol;
+package control;
 
 import model.Contato;
 import model.Nodo;
 
 public class Arvore {
+	
 	Contato cont;
 	private Nodo raiz;
 
@@ -19,6 +20,5 @@ public class Arvore {
 		novoNodo.getContato().setNumero(fone);
 		
 	}
-	
 
 }
