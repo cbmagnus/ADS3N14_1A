@@ -6,7 +6,7 @@ import model.Nodo;
 
 public class Arvore {
 	
-	private Nodo raiz;
+	private Nodo raiz; // --------------------------------------------------------variavel global
 	
 	Imprime imp = new Imprime();
 	
@@ -67,6 +67,29 @@ public class Arvore {
 	
 	
 	
+	
+	public Nodo pesquisa(String nome){
+		Nodo atual = raiz; // ------------------------------------------------------- guardo o valor existente inicio
+		
+		// compara se nome informado é maior ou menor que o existente e joga na variavel "comparacao"
+		int comparacao = nome.compareToIgnoreCase(atual.getContato().getNome());
+		
+		while(comparacao != 0){
+			
+			if(comparacao < 0){ // ----------------------------------------- se menor vai para esquerda
+				atual = atual.getFilhoEsquerdo();
+			}
+			else if(comparacao > 0){ // ----------------------------------------- se maior vai para direita
+				atual = atual.getFilhoDireito();
+			}
+			else if(atual == null){ // ----------------------------------------- se acabo os nodos não encontrou
+				imp.contatoNaoEncontrado();
+			}
+		}
+		
+		return atual;
+		
+	} // fim da pesquisa
 	
 	
 	
