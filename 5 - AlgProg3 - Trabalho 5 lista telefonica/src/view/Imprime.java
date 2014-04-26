@@ -6,7 +6,7 @@ public class Imprime {
 	
 	
 	public void mostraNodo(Nodo novo){
-		System.out.printf("%s 		- 	%d", novo.getContato().getNome(), novo.getContato().getNumero());
+		System.out.printf("%s 	- 	%d", novo.getContato().getNome(), novo.getContato().getNumero());
 	}
 	
 	

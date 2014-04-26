@@ -72,24 +72,44 @@ public class Arvore {
 		Nodo atual = raiz; // ------------------------------------------------------- guardo o valor existente inicio
 		
 		// compara se nome informado é maior ou menor que o existente e joga na variavel "comparacao"
-		int comparacao = nome.compareToIgnoreCase(atual.getContato().getNome());
-		
+		int comparacao = comparaStrings(nome, atual.getContato().getNome());
 		while(comparacao != 0){
 			
 			if(comparacao < 0){ // ----------------------------------------- se menor vai para esquerda
 				atual = atual.getFilhoEsquerdo();
+				if(atual == null){ // -------------------------------------------- se proximo is null sai
+					imp.contatoNaoEncontrado();
+					return null;
+				}else{
+					comparacao = comparaStrings(nome, atual.getContato().getNome());
+				}
 			}
 			else if(comparacao > 0){ // ----------------------------------------- se maior vai para direita
 				atual = atual.getFilhoDireito();
-			}
-			else if(atual == null){ // ----------------------------------------- se acabo os nodos não encontrou
-				imp.contatoNaoEncontrado();
+				if(atual == null){ // -------------------------------------------- se proximo is null sai
+					imp.contatoNaoEncontrado();
+					return null;
+				}else{
+					comparacao = comparaStrings(nome, atual.getContato().getNome());
+				}
 			}
 		}
-		
 		return atual;
 		
 	} // fim da pesquisa
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public int comparaStrings(String nome1, String nome2){
+		int comp = nome1.compareToIgnoreCase(nome2);
+		return comp;
+	}
 	
 	
 	

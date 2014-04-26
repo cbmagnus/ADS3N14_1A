@@ -22,9 +22,9 @@ public class Executa {
 		
 		System.out.println("nome ");
 		String nomee = scan.nextLine();
-		ar.pesquisa(nomee);
+		//ar.pesquisa(nomee);
 		
-		ar.imp.mostraNodo(ar.getRaiz());
+		ar.imp.mostraNodo(ar.pesquisa(nomee));
 		
 		scan.close();
 
