@@ -2,6 +2,7 @@ package control;
 
 import java.util.Scanner;
 
+import model.Nodo;
 import view.Imprime;
 
 public class Executa {
@@ -17,7 +18,7 @@ public class Executa {
 		int fone;
 		int opcao;
 		
-		ler.carregaLista();
+		ler.carregaLista(ar);
 		
 		do{
 			Scanner scan = new Scanner(System.in);
@@ -37,25 +38,28 @@ public class Executa {
 			switch (opcao) {
 			
 			case 1: // ------------------------------------------------------ ADICIONA
-				System.out.println("Digite o NOME do contato: ");
+				System.out.println("Digite o NOME do contato a ser inserido: ");
 				scan = new Scanner(System.in);
 				nome = scan.nextLine();
 				System.out.println("Digite o NUMERO do contato: ");
 				scan = new Scanner(System.in);
 				fone = scan.nextInt();
 				ar.insere(nome, fone);
+				System.out.println("Contato inserido com sucesso!");
 				break;
 
 			case 2: // ------------------------------------------------------ PROCURA
-				System.out.println("Digite o NOME do contato: ");
+				System.out.println("Digite o NOME do contato a ser pesquisado: ");
 				scan = new Scanner(System.in);
 				nome = scan.nextLine();
-				//ar.pesquisa(nome);
-				imp.mostraNodo(ar.pesquisa(nome));
+				Nodo n = ar.pesquisa(nome);
+				if(n != null){
+					imp.mostraNodo(n);
+				}
 				break;
 
 			case 3: // ------------------------------------------------------ DELETAR
-				System.out.println("Digite o NOME do contato: ");
+				System.out.println("Digite o NOME do contato a ser deletado: ");
 				scan = new Scanner(System.in);
 				nome = scan.nextLine();
 				ar.apaga(nome);

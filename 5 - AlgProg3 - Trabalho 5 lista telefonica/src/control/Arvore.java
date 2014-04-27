@@ -116,7 +116,6 @@ public class Arvore {
 		Nodo aux = raiz;
 		
 		if(pesquisa(nome) == null){
-			imp.contatoNaoEncontrado();
 			return;
 		}
 		
@@ -156,6 +155,7 @@ public class Arvore {
 				atual = aux;
 			}
 		}
+		System.out.println("Contato deletado com sucesso!");
 	} // fim do apaga
 	
 	

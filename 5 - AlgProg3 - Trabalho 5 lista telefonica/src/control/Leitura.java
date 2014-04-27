@@ -14,7 +14,7 @@ public class Leitura {
 	Arvore ar = new Arvore();
 	String arquivo = "C:/Users/net_darlan/Desktop/listaDesordenada.txt";
 	
-	public void carregaLista(){ // ------------------------------------------carrega lista de contatos da area de trabalho
+	public void carregaLista(Arvore novaArvore){ // ------------------------------------------carrega lista de contatos da area de trabalho
 		String nome;
 		int fone;
 		Scanner ler = null;
@@ -28,7 +28,7 @@ public class Leitura {
 		while(ler.hasNext()){ // ------------------------------ enquanto tiver linha as variaveis vao recendo os valores e inserindo na arvore
 			nome = ler.next(); // ----------------------------- perguntar para professor porque do erro do nextLine() nao funcionar (não pega o proximo contato)
 			fone = ler.nextInt();
-			ar.insere(nome, fone);
+			novaArvore.insere(nome, fone);
 		}
 		ler.close();
 	
