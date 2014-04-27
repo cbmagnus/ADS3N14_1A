@@ -6,7 +6,8 @@ import model.Nodo;
 
 public class Arvore {
 	
-	private Nodo raiz; // --------------------------------------------------------variavel global
+	private Nodo raiz; // ----------------------------------------------- variavel global
+	private int contaNodo = 0;
 	
 	Imprime imp = new Imprime();
 	
@@ -25,8 +26,7 @@ public class Arvore {
 		Nodo novoNodo = new Nodo();
 		
 		novoNodo.setContato(new Contato(nome, fone)); //forma diferente de inserção para teste
-		//novoNodo.getContato().setNome(nome);
-		//novoNodo.getContato().setNumero(fone);
+		contaNodo ++;
 		
 		if(raiz == null){ // --------------------------------------------------------------- raiz vazia
 			raiz = novoNodo;
@@ -58,6 +58,7 @@ public class Arvore {
 				}
 				else{
 					imp.erroNomesIguais();
+					contaNodo --;
 					break;
 				}
 			}	
@@ -69,7 +70,13 @@ public class Arvore {
 	
 	
 	public Nodo pesquisa(String nome){
+		
 		Nodo atual = raiz; // ------------------------------------------------------- guardo o valor existente inicio
+		
+		if(atual == null){ // ------------------------------------------------------- se arvore vazia sai
+			imp.erroArvoreVazia();
+			return null;
+		}
 		
 		// compara se nome informado é maior ou menor que o existente e joga na variavel "comparacao"
 		int comparacao = comparaStrings(nome, atual.getContato().getNome());
@@ -80,7 +87,8 @@ public class Arvore {
 				if(atual == null){ // -------------------------------------------- se proximo is null sai
 					imp.contatoNaoEncontrado();
 					return null;
-				}else{
+				}
+				else{
 					comparacao = comparaStrings(nome, atual.getContato().getNome());
 				}
 			}
@@ -89,7 +97,8 @@ public class Arvore {
 				if(atual == null){ // -------------------------------------------- se proximo is null sai
 					imp.contatoNaoEncontrado();
 					return null;
-				}else{
+				}
+				else{
 					comparacao = comparaStrings(nome, atual.getContato().getNome());
 				}
 			}
@@ -100,6 +109,54 @@ public class Arvore {
 	
 	
 	
+	
+	
+	public void apaga(String nome){
+		Nodo atual = raiz; // ------------------------------------------------------- guardo o valor existente inicio
+		Nodo aux = raiz;
+		
+		if(pesquisa(nome) == null){
+			imp.contatoNaoEncontrado();
+			return;
+		}
+		
+		else{
+			contaNodo --;
+			atual = pesquisa(nome);
+			
+			if(atual.getFilhoEsquerdo() == null && atual.getFilhoDireito() == null){ // ---- verifica se tem filhos se não só exclui pq é folha
+				if(atual == raiz){ // -------------------------------------------------------verifica se é raiz e zera arvore
+					raiz = null;
+				}
+				else{
+					atual = null;
+				}
+			}
+			else if (atual.getFilhoDireito() == null){ // ------------------------ se NÃO tem filho na DIREITA sobe o da esquerda  
+				if (atual == raiz){
+					raiz = atual.getFilhoEsquerdo();
+				}
+				else{
+					atual = atual.getFilhoEsquerdo();
+				}
+			}
+			else if (atual.getFilhoEsquerdo() == null){ // ------------------------ se NÃO tem filho na ESQUERDA sobe o da direita
+				if (atual == raiz){
+					raiz = atual.getFilhoDireito();
+				}
+				else{
+					atual = atual.getFilhoDireito();
+				}
+			}
+			else{ // ---------------------------------------------------- se tiver DOIS FILHOS o ultimo nome a esquerda do direito sobe 
+				aux = atual.getFilhoDireito();
+				while(aux.getFilhoEsquerdo() != null){
+					aux = aux.getFilhoEsquerdo();
+				}
+				atual = aux;
+			}
+		}
+	} // fim do apaga
 	
 	
 	
@@ -120,4 +177,10 @@ public class Arvore {
 	public void setRaiz(Nodo raiz) {
 		this.raiz = raiz;
 	}
-}
+	public int getContaNodo(){
+		return contaNodo;
+	}
+	
+} // Fim da classe
+
+
