@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import model.Nodo;
 import view.Imprime;
+import view.Travessias;
 
 public class Executa {
 
@@ -13,12 +14,13 @@ public class Executa {
 		Arvore ar = new Arvore();
 		Imprime imp = new Imprime();
 		Leitura ler = new Leitura();
+		Travessias trav = new Travessias();
 		
 		String nome;
 		int fone;
 		int opcao;
 		
-		ler.carregaLista(ar);
+		ler.carregaContatos(ar);
 		
 		do{
 			Scanner scan = new Scanner(System.in);
@@ -65,6 +67,28 @@ public class Executa {
 				ar.apaga(nome);
 				break;
 				
+			case 5:
+				System.out.println("Travessia Prefixa.\n");
+				trav.prefixa(ar.getRaiz());
+				break;
+				
+			case 6:
+				System.out.println("Travessia Infixa.\n");
+				trav.infixa(ar.getRaiz());
+				break;
+				
+			case 7:
+				System.out.println("Travessia Posfixa.\n");
+				trav.posfixa(ar.getRaiz());
+				break;
+				
+			case 8:
+				
+				break;
+				
+			case 9:
+				
+				break;
 				
 			case 0:
 				System.out.println("Tchau");
@@ -81,32 +105,3 @@ public class Executa {
 		
 	}
 }
-
-/*
-Arvore ar = new Arvore();
-Scanner scan = new Scanner(System.in);
-
-for(int i = 0; i < 3; i ++){
-	Scanner sc = new Scanner(System.in);
-	System.out.println("nome ");
-	String nom = sc.nextLine();
-	System.out.println("numero ");
-	int num = sc.nextInt();
-
-	ar.insere(nom, num);
-}
-ar.imp.mostraArvore(ar.getRaiz());
-
-System.out.println("nome ");
-String nomee = scan.nextLine();
-//ar.pesquisa(nomee);
-
-ar.imp.mostraNodo(ar.pesquisa(nomee));
-
-System.out.println("Digite o nome a apagar");
-String nome1 = scan.nextLine();
-ar.apaga(nome1);
-
-scan.close();
-
-*/

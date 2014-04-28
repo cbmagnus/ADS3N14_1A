@@ -72,6 +72,7 @@ public class Arvore {
 	public Nodo pesquisa(String nome){
 		
 		Nodo atual = raiz; // ------------------------------------------------------- guardo o valor existente inicio
+		int contComp = 0; // -------------------------------------------------------- variavel para contar comparações
 		
 		if(atual == null){ // ------------------------------------------------------- se arvore vazia sai
 			imp.erroArvoreVazia();
@@ -80,6 +81,7 @@ public class Arvore {
 		
 		// compara se nome informado é maior ou menor que o existente e joga na variavel "comparacao"
 		int comparacao = comparaStrings(nome, atual.getContato().getNome());
+		contComp ++;
 		while(comparacao != 0){
 			
 			if(comparacao < 0){ // ----------------------------------------- se menor vai para esquerda
@@ -90,6 +92,7 @@ public class Arvore {
 				}
 				else{
 					comparacao = comparaStrings(nome, atual.getContato().getNome());
+					contComp ++;
 				}
 			}
 			else if(comparacao > 0){ // ----------------------------------------- se maior vai para direita
@@ -100,11 +103,12 @@ public class Arvore {
 				}
 				else{
 					comparacao = comparaStrings(nome, atual.getContato().getNome());
+					contComp ++;
 				}
 			}
 		}
+		System.out.printf("FORAM REALIZADAS %d COMPARAÇÕES \n", contComp);
 		return atual;
-		
 	} // fim da pesquisa
 	
 	
@@ -112,16 +116,15 @@ public class Arvore {
 	
 	
 	public void apaga(String nome){
-		Nodo atual = raiz; // ------------------------------------------------------- guardo o valor existente inicio
+		Nodo atual = pesquisa(nome); // ---------------------------------------------- verifica e identifica o nome na arvore
 		Nodo aux = raiz;
 		
-		if(pesquisa(nome) == null){
+		if(atual == null){
 			return;
 		}
 		
 		else{
 			contaNodo --;
-			atual = pesquisa(nome);
 			
 			if(atual.getFilhoEsquerdo() == null && atual.getFilhoDireito() == null){ // ---- verifica se tem filhos se não só exclui pq é folha
 				if(atual == raiz){ // -------------------------------------------------------verifica se é raiz e zera arvore
@@ -153,11 +156,15 @@ public class Arvore {
 					aux = aux.getFilhoEsquerdo();
 				}
 				atual = aux;
+				if(aux.getFilhoDireito() != null){
+					aux = aux.getFilhoDireito();
+				}
+				aux = null;
 			}
 		}
 		System.out.println("Contato deletado com sucesso!");
-	} // fim do apaga
 	
+	} // fim do apaga
 	
 	
 	

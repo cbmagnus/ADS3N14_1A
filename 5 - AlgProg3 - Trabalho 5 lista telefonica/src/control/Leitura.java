@@ -14,7 +14,7 @@ public class Leitura {
 	Arvore ar = new Arvore();
 	String arquivo = "C:/Users/net_darlan/Desktop/listaDesordenada.txt";
 	
-	public void carregaLista(Arvore novaArvore){ // ------------------------------------------carrega lista de contatos da area de trabalho
+	public void carregaContatos(Arvore novaArvore){ // ------------------------------------------carrega lista de contatos da area de trabalho
 		String nome;
 		int fone;
 		Scanner ler = null;
