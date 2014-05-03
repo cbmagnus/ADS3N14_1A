@@ -23,7 +23,7 @@ public class Travessias {
 			imp.mostraNodo(nodo); // --------------------------------- imprime a raiz
 			infixa(nodo.getFilhoDireito()); // --------------------- imprime os da direita recursivamente
 		}
-	}
+	} // fim da infixa
 	
 	
 	
@@ -33,7 +33,7 @@ public class Travessias {
 			posfixa(nodo.getFilhoDireito()); // --------------------- imprime os da direita recursivamente
 			imp.mostraNodo(nodo); // --------------------------------- imprime a raiz
 		}
-	}
+	} // fim da posfixa
 	
 	
 	

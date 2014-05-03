@@ -15,6 +15,7 @@ public class Executa {
 		Imprime imp = new Imprime();
 		Leitura ler = new Leitura();
 		Travessias trav = new Travessias();
+		Busca busca = new Busca();
 		
 		String nome;
 		int fone;
@@ -83,10 +84,12 @@ public class Executa {
 				break;
 				
 			case 8:
-				
+				System.out.println("Lista por Largura.\n");
+				busca.largura(ar.getRaiz());
 				break;
 				
 			case 9:
+				System.out.println("Lista por Profundidade.\n");
 				
 				break;
 				

@@ -7,6 +7,7 @@ import model.Nodo;
 public class Arvore {
 	
 	private Nodo raiz; // ----------------------------------------------- variavel global
+	
 	private int contaNodo = 0;
 	
 	Imprime imp = new Imprime();
@@ -117,7 +118,7 @@ public class Arvore {
 	
 	public void apaga(String nome){
 		Nodo atual = pesquisa(nome); // ---------------------------------------------- verifica e identifica o nome na arvore
-		Nodo aux = raiz;
+		Nodo aux = atual;
 		
 		if(atual == null){
 			return;
@@ -131,39 +132,45 @@ public class Arvore {
 					raiz = null;
 				}
 				else{
-					atual = null;
+					atual.setContato(null);
 				}
 			}
 			else if (atual.getFilhoDireito() == null){ // ------------------------ se NÃO tem filho na DIREITA sobe o da esquerda  
-				if (atual == raiz){
-					raiz = atual.getFilhoEsquerdo();
-				}
-				else{
+//				if (atual == raiz){
+//					raiz = atual.getFilhoEsquerdo();
+//					atual.setFilhoEsquerdo(null);
+//				}
+//				else{
 					atual = atual.getFilhoEsquerdo();
-				}
+					atual.setFilhoEsquerdo(null);
+//				}
 			}
 			else if (atual.getFilhoEsquerdo() == null){ // ------------------------ se NÃO tem filho na ESQUERDA sobe o da direita
-				if (atual == raiz){
-					raiz = atual.getFilhoDireito();
-				}
-				else{
+//				if (atual == raiz){
+//					raiz = atual.getFilhoDireito();
+//					atual.setFilhoDireito(null);
+//				}
+//				else{
 					atual = atual.getFilhoDireito();
-				}
+					atual.setFilhoDireito(null);
+//				}
 			}
 			else{ // ---------------------------------------------------- se tiver DOIS FILHOS o ultimo nome a esquerda do direito sobe 
-				aux = atual.getFilhoDireito();
+				aux = atual.getFilhoDireito(); // ------------------------ alterar o codigo o que muda é o conteudo do nodo e não o nodo em si
 				while(aux.getFilhoEsquerdo() != null){
 					aux = aux.getFilhoEsquerdo();
 				}
-				atual = aux;
 				if(aux.getFilhoDireito() != null){
+					atual.setContato(aux.getContato());
 					aux = aux.getFilhoDireito();
+					aux.setFilhoDireito(null);
 				}
-				aux = null;
+				atual.setContato(aux.getContato());
+//				aux.setContato(null);
 			}
 		}
 		System.out.println("Contato deletado com sucesso!");
-	
+		
 	} // fim do apaga
 	
 	
