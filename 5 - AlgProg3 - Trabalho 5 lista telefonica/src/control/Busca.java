@@ -13,26 +13,24 @@ public class Busca {
 	
 	
 	public void largura(Nodo raiz){
-		if(raiz == null){
-			return;
-		}
-		else{
-			lista.add(raiz);
-			while(lista != null){
-				imp.mostraNodo(lista.get(0));
-				if(raiz.getFilhoEsquerdo() != null){
-					lista.add(raiz.getFilhoEsquerdo());
-				}
-				if(raiz.getFilhoDireito() != null){
-					lista.add(raiz.getFilhoDireito());
-				}
-				if(lista.get(0) == null){
-					return;
-				}
-				else{
-					lista.remove(0);
-					raiz = lista.get(0);
-				}
+		int cont = 0; // -------------------------------variavel auxiliar para sair do loop
+		lista.add(raiz); // ------------------------------adicionado a raiz para iniciar a lista
+		while(lista != null){
+			imp.mostraNodo(lista.get(0));
+			if(raiz.getFilhoEsquerdo() != null){ // ------------------ insere esquerdo na lista só se existir
+				lista.add(raiz.getFilhoEsquerdo());
+				cont ++;
+			}
+			if(raiz.getFilhoDireito() != null){ // ------------------ insere direito na lista só se existir
+				lista.add(raiz.getFilhoDireito());
+				cont ++;
+			}
+			if(cont != 0){
+				lista.remove(0); // --------------------------------remove sempre o primeiro da lista
+				raiz = lista.get(0);
+				cont--;
+			}else{
+				return;
 			}
 		}
 	}
