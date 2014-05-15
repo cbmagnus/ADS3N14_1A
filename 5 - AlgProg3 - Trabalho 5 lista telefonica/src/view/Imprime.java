@@ -6,7 +6,11 @@ public class Imprime {
 	
 	
 	public void mostraNodo(Nodo novo){
+		if(novo == null){
+			
+		}else{
 		System.out.printf("%s       	- %d \n", novo.getContato().getNome(), novo.getContato().getNumero());
+		}
 	}
 	
 	

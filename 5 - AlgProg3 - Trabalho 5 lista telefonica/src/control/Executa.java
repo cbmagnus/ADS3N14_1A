@@ -1,5 +1,6 @@
 package control;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import model.Nodo;
@@ -95,6 +96,12 @@ public class Executa {
 				
 			case 0:
 				System.out.println("Tchau");
+				try {
+					ler.exporta(ar.getRaiz());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				System.exit(0);
 				break;
 				

@@ -8,11 +8,10 @@ import model.Nodo;
 
 public class Busca {
 	
-	ArrayList<Nodo> lista = new ArrayList<>();
 	Imprime imp = new Imprime();
 	
-	
 	public void largura(Nodo raiz){
+		ArrayList<Nodo> lista = new ArrayList<>();
 		int cont = 0; // -------------------------------variavel auxiliar para sair do loop
 		lista.add(raiz); // ------------------------------adicionado a raiz para iniciar a lista
 		while(lista != null){

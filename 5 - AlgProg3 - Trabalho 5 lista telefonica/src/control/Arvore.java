@@ -7,7 +7,7 @@ import model.Nodo;
 public class Arvore {
 	
 	private Nodo raiz; // ----------------------------------------------- variavel global
-	
+	private Nodo paiProcurado = null;
 	private int contaNodo = 0;
 	
 	Imprime imp = new Imprime();
@@ -86,6 +86,7 @@ public class Arvore {
 		while(comparacao != 0){
 			
 			if(comparacao < 0){ // ----------------------------------------- se menor vai para esquerda
+				paiProcurado = atual;
 				atual = atual.getFilhoEsquerdo();
 				if(atual == null){ // -------------------------------------------- se proximo is null sai
 					imp.contatoNaoEncontrado();
@@ -97,6 +98,7 @@ public class Arvore {
 				}
 			}
 			else if(comparacao > 0){ // ----------------------------------------- se maior vai para direita
+				paiProcurado = atual;
 				atual = atual.getFilhoDireito();
 				if(atual == null){ // -------------------------------------------- se proximo is null sai
 					imp.contatoNaoEncontrado();
@@ -118,7 +120,7 @@ public class Arvore {
 	
 	public void apaga(String nome){
 		Nodo atual = pesquisa(nome); // ---------------------------------------------- verifica e identifica o nome na arvore
-		Nodo aux = atual;
+		Nodo aux = raiz;
 		
 		if(atual == null){
 			return;
@@ -132,41 +134,71 @@ public class Arvore {
 					raiz = null;
 				}
 				else{
-					atual.setContato(null);
+					if(paiProcurado.getFilhoDireito().getContato().getNome().equals(atual.getContato().getNome())){
+						paiProcurado.setFilhoDireito(null);
+					}
+					else{
+						paiProcurado.setFilhoEsquerdo(null);
+					}
 				}
 			}
+			
+			
 			else if (atual.getFilhoDireito() == null){ // ------------------------ se NÃO tem filho na DIREITA sobe o da esquerda  
-//				if (atual == raiz){
-//					raiz = atual.getFilhoEsquerdo();
-//					atual.setFilhoEsquerdo(null);
-//				}
-//				else{
-					atual = atual.getFilhoEsquerdo();
-					atual.setFilhoEsquerdo(null);
-//				}
+				Nodo A = atual.getFilhoEsquerdo(); // ---------------------------- auxiliar para guardar o filho 
+				atual.setContato(A.getContato()); // ------------------------------- filho deixa de existir
+				atual.setFilhoDireito(A.getFilhoDireito()); // --------------------- filho deixa de existir
+				atual.setFilhoEsquerdo(A.getFilhoEsquerdo()); // ------------------- filho deixa de existir
 			}
+			
+			
 			else if (atual.getFilhoEsquerdo() == null){ // ------------------------ se NÃO tem filho na ESQUERDA sobe o da direita
-//				if (atual == raiz){
-//					raiz = atual.getFilhoDireito();
-//					atual.setFilhoDireito(null);
-//				}
-//				else{
-					atual = atual.getFilhoDireito();
-					atual.setFilhoDireito(null);
-//				}
+				Nodo A = atual.getFilhoDireito(); // ---------------------------- auxiliar para guardar o filho 
+				atual.setContato(A.getContato()); // ------------------------------- filho deixa de existir
+				atual.setFilhoDireito(A.getFilhoDireito()); // --------------------- filho deixa de existir
+				atual.setFilhoEsquerdo(A.getFilhoEsquerdo()); // ------------------- filho deixa de existir
 			}
+			
+			
 			else{ // ---------------------------------------------------- se tiver DOIS FILHOS o ultimo nome a esquerda do direito sobe 
 				aux = atual.getFilhoDireito(); // ------------------------ alterar o codigo o que muda é o conteudo do nodo e não o nodo em si
+				Nodo pai = atual; // --------------------- auxiliar para guardar o pai
 				while(aux.getFilhoEsquerdo() != null){
+					pai = aux;
 					aux = aux.getFilhoEsquerdo();
+					if(aux.getFilhoEsquerdo() != null){
+						pai = aux; // ---------------------------- pai só recebe filho esquerdo se existir outro para continuar sendo pai
+					}
 				}
-				if(aux.getFilhoDireito() != null){
-					atual.setContato(aux.getContato());
-					aux = aux.getFilhoDireito();
-					aux.setFilhoDireito(null);
+				atual.setContato(aux.getContato()); // ------------ troca valor de atual pelo mais a esquerdo do nodo a direita.
+				
+				if(aux.getFilhoDireito() != null){ // -------------- verifico se o nome a ser ecluido tem filho a direita
+					if(pai.getFilhoDireito().getContato().getNome().equals(aux.getContato().getNome())){ // --- verifico se é o filho a direita que eu quero
+						if(aux.getFilhoDireito() != null){ // ----------- verifico se o valor a ser excluido tem filho a direita
+							pai.setFilhoDireito(aux.getFilhoDireito()); // -- filho a direita do pai recebe filho a direita do nodo a ser excluido
+						}
+						else{ // ---------------------------------------------- se não tem filhos apenas exclui
+						pai.setFilhoDireito(null);
+						}
+					}
+					else{ // --------------------------------------------- o que eu quero é o filho da esquerda 
+						if(aux.getFilhoDireito() != null){  // ------------ e verifico se o da esquerda te filhos a direita
+							pai.setFilhoEsquerdo(aux.getFilhoDireito());
+						}
+						else{
+							pai.setFilhoEsquerdo(null);
+						}
+					}
 				}
-				atual.setContato(aux.getContato());
-//				aux.setContato(null);
+				
+				else{ // ------------------------------------------ se for = null verifico se é mesmo o filho direito e excluo
+					if(pai.getFilhoDireito().getContato().getNome().equals(aux.getContato().getNome())){
+						pai.setFilhoDireito(null);
+					}
+					else{ // -------------------------------------- se não excluo o esquerdo
+						pai.setFilhoEsquerdo(null);
+					}
+				}
 			}
 		}
 		System.out.println("Contato deletado com sucesso!");
@@ -185,6 +217,9 @@ public class Arvore {
 	
 	
 
+	public Nodo getPaiProcurado(){
+		return paiProcurado;
+	}
 	public Nodo getRaiz() {
 		return raiz;
 	}

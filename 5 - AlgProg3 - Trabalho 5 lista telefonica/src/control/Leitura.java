@@ -36,11 +36,11 @@ public class Leitura {
 	
 	
 	
-	
+	// ver como gravar um arquivo na ultima posição do .txt
 	public void exporta(Nodo novo) throws IOException{ // --------------- Grava novo contato no txt ou exclui
 		FileWriter arq = new FileWriter(arquivo);
 		PrintWriter gravarArq = new PrintWriter(arq); // ----------------- variavel para gravar contato no .txt
-		
+		System.out.println(novo.getContato());
 		for(int i = 0; i < ar.getContaNodo(); i++){ // ------------------- enquanto for menor que o numero de nodos vai gravando
 			gravarArq.printf("%s%n%s%n", novo.getContato().getNome(), novo.getContato().getNumero());
 		}
