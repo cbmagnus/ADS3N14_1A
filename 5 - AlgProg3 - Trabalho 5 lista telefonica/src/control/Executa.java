@@ -41,7 +41,7 @@ public class Executa {
 			
 			switch (opcao) {
 			
-			case 1: // ------------------------------------------------------ ADICIONA
+			case 1: // ------------------------------------------------------------------- ADICIONA
 				System.out.println("Digite o NOME do contato a ser inserido: ");
 				scan = new Scanner(System.in);
 				nome = scan.nextLine();
@@ -52,7 +52,7 @@ public class Executa {
 				System.out.println("Contato inserido com sucesso!");
 				break;
 
-			case 2: // ------------------------------------------------------ PROCURA
+			case 2: // -------------------------------------------------------------------- PROCURA
 				System.out.println("Digite o NOME do contato a ser pesquisado: ");
 				scan = new Scanner(System.in);
 				nome = scan.nextLine();
@@ -62,7 +62,7 @@ public class Executa {
 				}
 				break;
 
-			case 3: // ------------------------------------------------------ DELETAR
+			case 3: // -------------------------------------------------------------------- DELETAR
 				System.out.println("Digite o NOME do contato a ser deletado: ");
 				scan = new Scanner(System.in);
 				nome = scan.nextLine();
@@ -97,7 +97,8 @@ public class Executa {
 			case 0:
 				System.out.println("Tchau");
 				try {
-					ler.exporta(ar.getRaiz());
+					Leitura le = new Leitura();
+					le.exporta(ar.getRaiz(), busca.getListaLargura());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

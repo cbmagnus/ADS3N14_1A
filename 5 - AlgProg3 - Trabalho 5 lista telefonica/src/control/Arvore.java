@@ -134,8 +134,10 @@ public class Arvore {
 					raiz = null;
 				}
 				else{
-					if(paiProcurado.getFilhoDireito().getContato().getNome().equals(atual.getContato().getNome())){
-						paiProcurado.setFilhoDireito(null);
+					if(paiProcurado.getFilhoDireito() != null){
+						if(paiProcurado.getFilhoDireito().getContato().getNome().equalsIgnoreCase(atual.getContato().getNome())){
+							paiProcurado.setFilhoDireito(null);
+						}
 					}
 					else{
 						paiProcurado.setFilhoEsquerdo(null);
