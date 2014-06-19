@@ -11,11 +11,10 @@ public class Vertices {
 	private double y;
 	private double distancia;
 	private boolean visitado = false;
-	private List<Vertices> listVert = new ArrayList<Vertices>();
 	
 	//construtor para receber valores (acho que não usaremos);
 	public Vertices(int vertice, int anterior, double x, double y,
-			double distancia, boolean visitado, List<Vertices> listVert) {
+			double distancia, boolean visitado) {
 		super();
 		this.vertice = vertice;
 		this.anterior = anterior;
@@ -23,7 +22,6 @@ public class Vertices {
 		this.y = y;
 		this.distancia = distancia;
 		this.visitado = visitado;
-		this.listVert = listVert;
 	}
 
 	//construtor passando os valores existentes
@@ -31,7 +29,6 @@ public class Vertices {
 		super();
 		getAnterior();
 		getDistancia();
-		getListVert();
 		getVertice();
 		getX();
 		getY();
@@ -74,12 +71,6 @@ public class Vertices {
 	}
 	public void setVisitado(boolean visitado) {
 		this.visitado = visitado;
-	}
-	public List<Vertices> getListVert() {
-		return listVert;
-	}
-	public void setListVert(List<Vertices> listVert) {
-		this.listVert = listVert;
 	}
 	
 }
