@@ -8,13 +8,14 @@ import model.Vertices;
 
 public class Matriz {
 
-	private List<Arestas> listArestas = new ArrayList<Arestas>(); //lista de arestas pra popular a matriz
-	private List<Vertices> listVert = new ArrayList<Vertices>();
-	private Double[][]  matriz = new Double[50][50];
+	List<Arestas> listArestas = new ArrayList<Arestas>(); //lista de arestas pra popular a matriz
+	List<Vertices> listVert = new ArrayList<Vertices>();
 	
 	Arestas ar = new Arestas();
 	Vertices vert = new Vertices();
-	
+	// a matriz tera o tamanho que tiver a lista de vertices
+	private Double[][]  matriz = new Double[listVert.size()][listVert.size()];
+
 	
 	
 	
