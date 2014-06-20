@@ -15,6 +15,10 @@ public class Matriz {
 	Arestas ar = new Arestas();
 	Vertices vert = new Vertices();
 	
+	
+	
+	
+	
 	public void populaMatriz(){
 		List<Arestas> listaArestas = listArestas; // variavel para trabalhar com a lista de arestas
 		// enquanto a lista de aresta tiver algo continua loop
@@ -28,5 +32,11 @@ public class Matriz {
 			listaArestas.remove(2);
 		}
 	}
+	
+	
+	
+	
+	
+	
 	
 }
