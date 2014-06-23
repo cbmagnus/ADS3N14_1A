@@ -11,6 +11,15 @@ public class Matriz {
 	List<Arestas> listArestas = new ArrayList<Arestas>(); //lista de arestas pra popular a matriz
 	List<Vertices> listVert = new ArrayList<Vertices>();
 	
+	
+	public Matriz(List<Arestas> listArestas, List<Vertices> listVert) {
+		super();
+		this.listArestas = listArestas;
+		this.listVert = listVert;
+	}
+
+
+
 	Arestas ar = new Arestas();
 	Vertices vert = new Vertices();
 	// a matriz tera o tamanho que tiver a lista de vertices
