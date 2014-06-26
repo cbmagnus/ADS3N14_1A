@@ -16,6 +16,8 @@ public class Leitura {
 	private List<Arestas> listAr = new ArrayList<Arestas>(); // listas secundarias
 	private List<Vertices> listVert = new ArrayList<Vertices>(); // listas secundarias
 	
+	Matriz matriz = new Matriz(); //passo pra matriz as listas preenchidas
+	
 	
 	public void leitura() throws FileNotFoundException{
 
@@ -38,7 +40,8 @@ public class Leitura {
 					vertice.setY(Double.parseDouble(vert[2]));
 					vertice.setAnterior(-1);
 
-					listVert.add(vertice);
+					listVert.add(vertice); //adiciona a lista o novo vertice
+					
 					linha = scan.nextLine(); // pega proxima linha
 				}
 				
@@ -55,7 +58,8 @@ public class Leitura {
 						aresta.setVertY(Integer.parseInt(ar[1]));
 						aresta.setCusto(Double.parseDouble(ar[2]));
 
-						listAr.add(aresta);
+						listAr.add(aresta); //adiciona a lista a nova aresta
+						
 						if(scan.hasNext()){
 							linha = scan.nextLine();// pega proxima linha
 						}else{
@@ -72,26 +76,19 @@ public class Leitura {
 		}while(scan.hasNext());
 		scan.close();
 		
-		Matriz matriz = new Matriz(listAr, listVert);
 		matriz.setListArestas(listAr);
 		matriz.setListVert(listVert);		
-		
-	}
-	public void mostraTeste(){
-		System.out.println(listVert.size());
-		System.out.println(listAr.size());
+
 	}
 	
 	
 	
 	
-	
-	public List<Arestas> getListAr() {
-		return listAr;
+	// getMatriz para buscar ela preenchida na classe main (Gambiarra)...
+	public Matriz getMatriz(){
+		return matriz;
 	}
 	
-	public List<Vertices> getListVert() {
-		return listVert;
-	}
+	
 	
 }

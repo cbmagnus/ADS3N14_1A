@@ -5,19 +5,10 @@ public class Arestas {
 	private double custo;
 	private int vertX;
 	private int vertY;
-	
-	
-	//construtor
-	public Arestas(double custo, int vertX, int vertY) {
-		super();
-		this.custo = custo;
-		this.vertX = vertX;
-		this.vertY = vertY;
-	}
 
 	//construtor
 	public Arestas() {
-		super();
+//		super();
 	}
 	
 	

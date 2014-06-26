@@ -9,27 +9,10 @@ public class Vertices {
 	private double y;
 	private double distancia;
 	private boolean visitado = false;
-	
-	//construtor para receber valores (acho que não usaremos);
-	public Vertices(int vertice, int anterior, double x, double y,
-			double distancia, boolean visitado) {
-		super();
-		this.vertice = vertice;
-		this.anterior = anterior;
-		this.x = x;
-		this.y = y;
-		this.distancia = distancia;
-		this.visitado = visitado;
-	}
 
-	//construtor passando os valores existentes
+	//construtor 
 	public Vertices() {
-		super();
-//		getAnterior();
-//		getDistancia();
-//		getVertice();
-//		getX();
-//		getY();
+//		super();
 	}
 	
 	
