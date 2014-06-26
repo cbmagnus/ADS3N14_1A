@@ -8,27 +8,29 @@ import model.Vertices;
 
 public class Matriz {
 
-	List<Arestas> listArestas = new ArrayList<Arestas>(); //lista de arestas pra popular a matriz
-	List<Vertices> listVert = new ArrayList<Vertices>();
+	private List<Arestas> listArestas = new ArrayList<Arestas>(); //lista de arestas pra popular a matriz
+	private List<Vertices> listVert = new ArrayList<Vertices>();
 	
-	
+	// a matriz tera o tamanho que tiver a lista de vertices
+	private Double[][]  matriz = new Double[listVert.size()][listVert.size()];
+
+	//construtor
 	public Matriz(List<Arestas> listArestas, List<Vertices> listVert) {
 		super();
 		this.listArestas = listArestas;
 		this.listVert = listVert;
 	}
+	
+	
+	public Matriz() {
+		super();
+	}
 
 
 
-	Arestas ar = new Arestas();
-	Vertices vert = new Vertices();
-	// a matriz tera o tamanho que tiver a lista de vertices
-	private Double[][]  matriz = new Double[listVert.size()][listVert.size()];
 
-	
-	
-	
-	
+
+
 	public void populaMatriz(){
 		List<Arestas> listaArestas = listArestas; // variavel para trabalhar com a lista de arestas
 		// enquanto a lista de aresta tiver algo continua loop
@@ -48,5 +50,38 @@ public class Matriz {
 	
 	
 	
-	
+	public void mostraListas(){
+		System.out.println(listVert.size());
+		System.out.println(listArestas.size());
+	}
+
+
+
+
+
+
+	public List<Arestas> getListArestas() {
+		return listArestas;
+	}
+
+	public void setListArestas(List<Arestas> listArestas) {
+		this.listArestas = listArestas;
+	}
+
+	public List<Vertices> getListVert() {
+		return listVert;
+	}
+
+	public void setListVert(List<Vertices> listVert) {
+		this.listVert = listVert;
+	}
+
+	public Double[][] getMatriz() {
+		return matriz;
+	}
+
+	public void setMatriz(Double[][] matriz) {
+		this.matriz = matriz;
+	}
+		
 }

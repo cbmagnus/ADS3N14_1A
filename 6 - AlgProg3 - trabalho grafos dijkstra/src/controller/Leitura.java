@@ -6,50 +6,92 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import view.Mensagens;
+
 import model.Arestas;
 import model.Vertices;
 
 public class Leitura {
 
+	private List<Arestas> listAr = new ArrayList<Arestas>(); // listas secundarias
+	private List<Vertices> listVert = new ArrayList<Vertices>(); // listas secundarias
+	
+	
 	public void leitura() throws FileNotFoundException{
-		
-		CalculaDistancia dist = new CalculaDistancia();
-		
-		List<Arestas> listAr = new ArrayList<Arestas>(); // listas secundarias
-		List<Vertices> listVert = new ArrayList<Vertices>(); // listas secundarias
-		
+
 		String file = "C:/Users/fast shop/Desktop/dijkstra trabalho final.txt";
-		Scanner scan = new Scanner(new FileReader(file)).useDelimiter(" |\n");// ",|\n"   \\s*vertices\\s*
+		Scanner scan = new Scanner(new FileReader(file));//.useDelimiter(" |\n");// ",|\n"   \\s*vertices\\s*
 
-		
-		while(scan.hasNext() || scan.nextLine().equals("vertices")){
-			Vertices vertice = new Vertices();
+		do{
+			String linha = scan.nextLine();
+			if(linha.equalsIgnoreCase("vertices")){
+				linha = scan.nextLine();
 
-			if(scan.nextLine().equals("vertices")){
-			
+				while(scan.hasNext() && !linha.equalsIgnoreCase("arestas")){ // enquanto tiver algo o arquivo executa
+
+					Vertices vertice = new Vertices();
+					String[] vert = linha.split(" ");
+
+					//adiciono a lista os valores existentes no vetor de Strings convertendo para os respectivos tipos
+					vertice.setVertice(Integer.parseInt(vert[0]));
+					vertice.setX(Double.parseDouble(vert[1]));
+					vertice.setY(Double.parseDouble(vert[2]));
+					vertice.setAnterior(-1);
+
+					listVert.add(vertice);
+					linha = scan.nextLine(); // pega proxima linha
+				}
+				
+				if(linha.equalsIgnoreCase("arestas")){
+					linha = scan.nextLine(); // pega proxima linha
+
+					while(linha != null){ // enquanto tiver algo o arquivo executa
+						Arestas aresta = new Arestas();
+						//Separa em cada posição do vetor o que tiver na string "linha" separadas por " " espaço em branco
+						String[] ar = linha.split(" ");
+
+						//adiciono a lista os valores existentes no vetor de Strings convertendo para os respectivos tipos
+						aresta.setVertX(Integer.parseInt(ar[0]));
+						aresta.setVertY(Integer.parseInt(ar[1]));
+						aresta.setCusto(Double.parseDouble(ar[2]));
+
+						listAr.add(aresta);
+						if(scan.hasNext()){
+							linha = scan.nextLine();// pega proxima linha
+						}else{
+							linha = null;
+						}
+					}
+				}
 			}
-			System.out.println(scan.next());
-			System.out.println(scan.next());
-			System.out.println(scan.next());
-
-
-			vertice.setVertice(scan.nextInt());
-			vertice.setX(scan.nextDouble());
-			vertice.setY(scan.nextDouble());
-			vertice.setAnterior(-1);
-
-			listVert.add(vertice);
-		}
-		while(scan.hasNext() || scan.nextLine().equals("arestas")){
-			Arestas ar = new Arestas();
-
-			ar.setVertX(scan.nextInt());
-			ar.setVertY(scan.nextInt());
-			ar.setCusto(scan.nextDouble());
-
-			listAr.add(ar);
-		}
+			else{
+				Mensagens msg = new Mensagens();
+				msg.erroLeitura();
+			}
+		
+		}while(scan.hasNext());
 		scan.close();
+		
 		Matriz matriz = new Matriz(listAr, listVert);
+		matriz.setListArestas(listAr);
+		matriz.setListVert(listVert);		
+		
 	}
+	public void mostraTeste(){
+		System.out.println(listVert.size());
+		System.out.println(listAr.size());
+	}
+	
+	
+	
+	
+	
+	public List<Arestas> getListAr() {
+		return listAr;
+	}
+	
+	public List<Vertices> getListVert() {
+		return listVert;
+	}
+	
 }

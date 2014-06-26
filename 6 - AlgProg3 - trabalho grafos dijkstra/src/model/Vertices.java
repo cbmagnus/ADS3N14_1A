@@ -25,11 +25,11 @@ public class Vertices {
 	//construtor passando os valores existentes
 	public Vertices() {
 		super();
-		getAnterior();
-		getDistancia();
-		getVertice();
-		getX();
-		getY();
+//		getAnterior();
+//		getDistancia();
+//		getVertice();
+//		getX();
+//		getY();
 	}
 	
 	
