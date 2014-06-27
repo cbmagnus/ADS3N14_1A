@@ -32,10 +32,25 @@ public class Matriz {
 		
 		// enquanto a lista de aresta tiver algo continua loop
 		while(!listaArestas.isEmpty()){ 
+			
+			//Variaveis para guardar valores das arestas
+			int vertX = listaArestas.get(0).getVertX();
+			int vertY = listaArestas.get(0).getVertY();
+			double custo = listaArestas.get(0).getCusto();
+			
+			//variaveis para guardar valores para calcular o custo
+			double x1 = listVert.get(vertX).getX();
+			double x2 = listVert.get(vertX).getY();
+			double y1 = listVert.get(vertY).getX();
+			double y2 = listVert.get(vertY).getY();
+			
+			double total = (calcDist(x1, x2, y1, y2) + custo);
+			
 			// 1º valor da lista na linha. 2º valor na lista é a coluna este ponto recebe o custo (DOUBLE) IDA E VOLTA
-			matriz[listaArestas.get(0).getVertX()][listaArestas.get(0).getVertY()] = listaArestas.get(0).getCusto();
-			matriz[listaArestas.get(0).getVertY()][listaArestas.get(0).getVertX()] = listaArestas.get(0).getCusto();
-			//apago os 3 primeiro numeros da lista e assim ppor diante
+			matriz[vertX][vertY] = total;
+			matriz[vertY][vertX] = total;
+			
+			//apago o 1 primeiro numeros da lista e assim por diante
 			listaArestas.remove(0);
 		}
 		System.out.println(matriz[0][1]);
@@ -48,6 +63,11 @@ public class Matriz {
 	
 	
 	
+	//cuidar para não colocar os valores na ordem errada
+	public double calcDist(Double x1, Double x2, Double y1, Double y2){
+		double distancia = Math.sqrt( (Math.pow((x1 - x2), 2)) + (Math.pow((y1 - y2), 2)));
+		return distancia;
+	}
 
 
 
