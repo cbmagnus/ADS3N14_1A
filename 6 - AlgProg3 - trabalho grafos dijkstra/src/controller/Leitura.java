@@ -89,6 +89,10 @@ public class Leitura {
 		return matriz;
 	}
 	
+	public void getMatriz(int a, int b){
+		System.out.println(matriz.getMatriz()[a][b]);
+//		return matriz.getMatriz()[a][b];
+	}
 	
 	
 }

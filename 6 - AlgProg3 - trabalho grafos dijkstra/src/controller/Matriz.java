@@ -53,12 +53,12 @@ public class Matriz {
 			//apago o 1 primeiro numeros da lista e assim por diante
 			listaArestas.remove(0);
 		}
-		System.out.println(matriz[0][1]);
-		System.out.println(matriz[0][2]);
-		System.out.println(matriz[0][3]);
-		System.out.println(matriz[1][2]);
-		System.out.println(matriz[1][3]);
-		System.out.println(matriz[2][3]);
+//		System.out.println(matriz[0][1]);
+//		System.out.println(matriz[0][2]);
+//		System.out.println(matriz[0][3]);
+//		System.out.println(matriz[1][2]);
+//		System.out.println(matriz[1][3]);
+//		System.out.println(matriz[2][3]);
 	}
 	
 	
@@ -89,5 +89,14 @@ public class Matriz {
 	public void setListVert(List<Vertices> listVert) {
 		this.listVert = listVert;
 	}
+
+	public Double[][] getMatriz() {
+		return matriz;
+	}
+
+	public void setMatriz(Double[][] matriz) {
+		this.matriz = matriz;
+	}
 		
+	
 }
